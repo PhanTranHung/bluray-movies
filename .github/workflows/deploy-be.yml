@@ -36,6 +36,8 @@ jobs:
           SSH_HOST: ${{ secrets.HOST_IP }}
           SSH_USER: ${{ secrets.HOST_USER }}
           SSH_KEY: ${{ secrets.ACCESS_KEY }}
+      - name: Show config file
+        run: cat ~/.ssh/config
       - name: List all system file
         run: |
           ssh ec2 "ls -la /"
