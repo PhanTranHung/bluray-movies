@@ -35,7 +35,7 @@ jobs:
         env:
           SSH_HOST: ${{ vars.HOST_IP }}
           SSH_USER: ${{ vars.HOST_USER }}
-          SSH_KEY: "${vars.ACCESS_KEY}"
+          SSH_KEY: '${vars.ACCESS_KEY}'
       - name: Show config file
         run: cat ~/.ssh/config
       - name: Show access key
