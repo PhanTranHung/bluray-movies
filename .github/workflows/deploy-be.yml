@@ -1,5 +1,5 @@
 name: Deploy server BE
-run-name: ${{ github.actor }} is deploying BE automacly 🚀
+run-name: ${{ github.actor }} is deploying BE automatically 🚀
 on:
   push:
     branches:
@@ -35,7 +35,7 @@ jobs:
         env:
           SSH_HOST: ${{ secrets.HOST_IP }}
           SSH_USER: ${{ secrets.HOST_USER }}
-          SSH_KEY: ${{ secrets.!!ACCESS_KEY }}
+          SSH_KEY: ${{ secrets.ACCESS_KEY }}
       - name: List all system file
         run: |
           ssh ec2 "ls -la /"
