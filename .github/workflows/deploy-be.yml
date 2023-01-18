@@ -7,10 +7,10 @@ env:
 on:
   push:
     branches:
-      - implement-ci-cd
+      - ${{ env.WORKING_BRANCH }}
   pull_request:
     branches:
-      - implement-ci-cd
+      - ${{ env.WORKING_BRANCH }}
 
 permissions:
   contents: read
