@@ -2,7 +2,7 @@ name: Deploy server BE
 run-name: ${{ github.actor }} is deploying BE automatically 🚀
 
 env:
-  - WORKING_BRANCH: implement-ci-cd
+  WORKING_BRANCH: implement-ci-cd
 
 on:
   push:
