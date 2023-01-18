@@ -43,4 +43,4 @@ jobs:
       - name: Build source
         run: ssh ec2 "cd bluray-movies && npm run build"
       - name: Start BE server
-        run: ssh ec2 "cd bluray-movies && npm run start"
+        run: ssh ec2 "cd bluray-movies && pm2 restart ecosystem.config.js"
