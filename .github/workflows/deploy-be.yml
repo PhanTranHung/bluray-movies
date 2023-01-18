@@ -1,0 +1,50 @@
+name: Deploy server BE
+run-name: ${{ github.actor }} is deploying BE automatically 🚀
+
+env:
+  WORKING_BRANCH: main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  deploy-be:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/ssh-test.pem
+          chmod 600 ~/.ssh/ssh-test.pem
+          cat >>~/.ssh/config <<END
+          Host ec2
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/ssh-test.pem
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_HOST: ${{ vars.HOST_IP }}
+          SSH_USER: ${{ vars.HOST_USER }}
+          SSH_KEY: "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJPA12xXrVkGhD+Uu/q0gAA\nAIgrpSB/K6UgfwAAAAtzc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJP\nA12xXrVkGhD+Uu/q0gAAAEAwUQIBATAFBgMrZXAEIgQgsIAS9qSQCIonQpy3oGg1\n943WWtg7GTQdhh4g83JH7BUC4k8DXbFetWQaEP5S7+rSAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----"
+      - name: 'Checkout to branch ${{ env.WORKING_BRANCH }}'
+        run: ssh ec2 "cd bluray-movies && git fetch --all && git checkout ${{ env.WORKING_BRANCH }}"
+      - name: Pull code from source
+        run: ssh ec2 "cd bluray-movies && git pull"
+      - name: Install all dependencies
+        run: ssh ec2 "cd bluray-movies && npm i"
+      - name: Build source
+        run: ssh ec2 "cd bluray-movies && npm run build"
+      - name: Start BE server
+        run: ssh ec2 "cd bluray-movies && pm2 restart ecosystem.config.js"
