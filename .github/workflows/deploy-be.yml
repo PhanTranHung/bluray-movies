@@ -1,0 +1,41 @@
+name: Deploy server BE
+run-name: ${{ github.actor }} is deploying BE automacly 🚀
+on:
+  push:
+    branches:
+      - implement-ci-cd
+  pull_request:
+    branches:
+      - implement-ci-cd
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  install-ssh:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/github-actions-key
+          chmod 600 ~/.ssh/github-actions-key
+          cat >>~/.ssh/config <<END
+          Host ec2
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/github-actions-key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_HOST: ${{ secrets.HOST_IP }}
+          SSH_USER: ${{ secrets.HOST_USER }}
+          SSH_KEY: ${{ secrets.!!ACCESS_KEY }}
+      - name: List all system file
+        run: |
+          ssh ec2 "ls -la /"
