@@ -37,10 +37,10 @@ jobs:
           SSH_USER: ${{ vars.HOST_USER }}
           SSH_KEY: "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJPA12xXrVkGhD+Uu/q0gAA\nAIgrpSB/K6UgfwAAAAtzc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJP\nA12xXrVkGhD+Uu/q0gAAAEAwUQIBATAFBgMrZXAEIgQgsIAS9qSQCIonQpy3oGg1\n943WWtg7GTQdhh4g83JH7BUC4k8DXbFetWQaEP5S7+rSAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----"
       - name: Pull code from source
-        run: cd bluray-movies && git pull
+        run: ssh ec2 "cd bluray-movies && git pull"
       - name: Install all dependencies
-        run: cd bluray-movies && npm i
+        run: ssh ec2 "cd bluray-movies && npm i"
       - name: Build source
-        run: cd bluray-movies && npm run build
+        run: ssh ec2 "cd bluray-movies && npm run build"
       - name: Start BE server
-        run: cd bluray-movies && npm run start
+        run: ssh ec2 "cd bluray-movies && npm run start"
