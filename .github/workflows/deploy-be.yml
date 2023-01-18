@@ -38,6 +38,8 @@ jobs:
           SSH_KEY: ${{ secrets.ACCESS_KEY }}
       - name: Show config file
         run: cat ~/.ssh/config
+      - name: Show access key
+        run: cat ~/.ssh/github-actions-key.pem
       - name: List all system file
         run: |
           ssh ec2 "ls -la /"
