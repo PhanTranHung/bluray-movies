@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   deploy-be:
-    concurrency: '${{ github.workflow }} @ ${{ github.ref }}'
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-22.04
     steps:
       - name: Configure SSH
