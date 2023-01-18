@@ -33,8 +33,8 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_HOST: ${{ secrets.HOST_IP }}
-          SSH_USER: ${{ secrets.HOST_USER }}
+          SSH_HOST: ${{ vars.HOST_IP }}
+          SSH_USER: ${{ vars.HOST_USER }}
           SSH_KEY: ${{ secrets.ACCESS_KEY }}
       - name: Show config file
         run: cat ~/.ssh/config
