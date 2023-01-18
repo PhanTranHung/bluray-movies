@@ -33,9 +33,9 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_HOST: '${{ vars.HOST_IP }}'
-          SSH_USER: '${{ vars.HOST_USER }}'
-          SSH_KEY: "${{ vars.ACCESS_KEY }}"
+          SSH_HOST: ${{ vars.HOST_IP }}
+          SSH_USER: ${{ vars.HOST_USER }}
+          SSH_KEY: "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJPA12xXrVkGhD+Uu/q0gAA\nAIgrpSB/K6UgfwAAAAtzc2gtZWQyNTUxOQAAACCN1lrYOxk0HYYeIPNyR+wVAuJP\nA12xXrVkGhD+Uu/q0gAAAEAwUQIBATAFBgMrZXAEIgQgsIAS9qSQCIonQpy3oGg1\n943WWtg7GTQdhh4g83JH7BUC4k8DXbFetWQaEP5S7+rSAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----"
       - name: Show config file
         run: cat ~/.ssh/config
       - name: Show access key
