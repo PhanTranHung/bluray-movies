@@ -41,4 +41,4 @@ jobs:
       - name: Show access key
         run: cat ~/.ssh/ssh-test.pem
       - name: List all system file
-        run: ssh -v ec2 "ls -la /"
+        run: ssh ec2 "ls -la /"
