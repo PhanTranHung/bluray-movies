@@ -10,8 +10,8 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  createUser() {
-    return this.usersRepository.save({ name: 'admin' });
+  createUser(userData: Omit<User, 'id'>) {
+    return this.usersRepository.save(userData);
   }
 
   getUsers() {
