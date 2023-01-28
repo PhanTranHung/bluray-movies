@@ -1,15 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel, Model } from 'nestjs-dynamoose';
-import { VideoKey, VideoMeta, VideoObject } from 'src/module/dynamodb/schemas/video/video.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Video, VideoDocument } from 'src/module/mongodb/schemas/video.schema';
 
 @Injectable()
 export class UploadService {
   constructor(
-    @InjectModel(VideoMeta.name)
-    private videoModel: Model<VideoKey, VideoObject>,
+    @InjectModel(Video.name)
+    private videoModel: Model<VideoDocument>,
   ) {}
 
-  createVideo(video: VideoObject) {
+  createVideo(video: Video) {
     return this.videoModel.create(video);
   }
 }

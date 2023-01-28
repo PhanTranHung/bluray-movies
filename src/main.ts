@@ -1,5 +1,7 @@
 import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+import * as dotenvExpand from 'dotenv-expand';
+const env = dotenv.config({ path: '.env', override: true });
+dotenvExpand.expand(env);
 
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
