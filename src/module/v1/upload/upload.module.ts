@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DynamooseModule } from 'nestjs-dynamoose';
-import { VideoMeta, VideoSchema } from 'src/module/dynamodb/schemas/video/video.schema';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Video, VideoSchema } from 'src/module/mongodb/schemas/video.schema';
 import { UploadController } from './upload.controller';
 import { UploadService } from './upload.service';
 
 @Module({
-  imports: [DynamooseModule.forFeature([{ name: VideoMeta.name, schema: VideoSchema }])],
+  imports: [MongooseModule.forFeature([{ name: Video.name, schema: VideoSchema }])],
   providers: [UploadService],
   controllers: [UploadController],
 })

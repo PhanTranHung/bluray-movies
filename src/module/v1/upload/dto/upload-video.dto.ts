@@ -1,11 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
-import { nanoid } from 'nanoid';
-import { VideoObject } from 'src/module/dynamodb/schemas/video/video.schema';
+import { Video } from 'src/module/mongodb/schemas/video.schema';
 
-export class CreateVideoDto implements VideoObject {
-  id: string;
-
+export class UploadVideoDto implements Video {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -20,8 +17,4 @@ export class CreateVideoDto implements VideoObject {
   @IsString()
   @IsNotEmpty()
   quality: string;
-
-  constructor() {
-    this.id = nanoid();
-  }
 }
