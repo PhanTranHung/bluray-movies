@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { realtionalDatabaseConfig } from './config';
+import { realtionalDatabaseConfig } from './relational-database.config';
 
 @Module({
   imports: [TypeOrmModule.forRoot(realtionalDatabaseConfig)],

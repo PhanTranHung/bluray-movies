@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DynamooseModule } from 'nestjs-dynamoose';
-import { dynamodbConfig } from './config';
+import { dynamodbConfig } from './dynamodb.config';
 
 @Module({
   imports: [DynamooseModule.forRoot(dynamodbConfig)],
