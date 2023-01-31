@@ -5,4 +5,7 @@ import { dynamodbConfig } from './dynamodb.config';
 @Module({
   imports: [DynamooseModule.forRoot(dynamodbConfig)],
 })
-export class DynamodbModule {}
+export class DynamodbModule {
+  // TODO: update dynamo configs, it not working for now
+  // Can't to connect to DynamoDB
+}
