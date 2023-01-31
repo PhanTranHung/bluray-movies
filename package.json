@@ -28,6 +28,8 @@
     "typeorm-cli": "./typeorm-cli.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.261.0",
+    "@aws-sdk/s3-request-presigner": "^3.261.0",
     "@nestjs/common": "9.0.0",
     "@nestjs/config": "2.2.0",
     "@nestjs/core": "9.0.0",
@@ -37,6 +39,7 @@
     "@nestjs/typeorm": "9.0.1",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.0",
+    "dayjs": "1.11.7",
     "dotenv": "16.0.3",
     "dotenv-expand": "10.0.0",
     "dynamoose": "3.1.0",
@@ -47,7 +50,9 @@
     "nestjs-dynamoose": "0.5.0",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.2.0",
-    "typeorm": "0.3.11"
+    "typeorm": "0.3.11",
+    "winston": "3.8.2",
+    "winston-daily-rotate-file": "4.7.1"
   },
   "devDependencies": {
     "@nestjs/cli": "9.0.0",
