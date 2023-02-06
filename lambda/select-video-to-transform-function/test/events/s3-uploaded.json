@@ -1,0 +1,38 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "ap-southeast-1",
+      "eventTime": "2023-02-03T11:05:58.073Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AWS:AIDAW4ZZMYTHIHHQ6ZCHM"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "171.234.15.5"
+      },
+      "responseElements": {
+        "x-amz-request-id": "V15Q25WNX44SR55V",
+        "x-amz-id-2": "kiq9adbHapIj75a5JhpkrSLNuDlIeT02jYtJKX/j2L78keWGvtodIx3avChTk/sC6UufsoXWPW+WzsTa1yZYcRGLxNdsC+Ol"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "put-notification-to-lambda",
+        "bucket": {
+          "name": "bluray-movies-store",
+          "ownerIdentity": {
+            "principalId": "A22Q8IPO7LWRVO"
+          },
+          "arn": "arn:aws:s3:::bluray-movies-store"
+        },
+        "object": {
+          "key": "output3-720.mp4",
+          "size": 6213525,
+          "eTag": "2b80c5fb5f608d1fa31ad8cef2f13adf",
+          "sequencer": "0063DCEA95ED62B235"
+        }
+      }
+    }
+  ]
+}

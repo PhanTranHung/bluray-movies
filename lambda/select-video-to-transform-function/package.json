@@ -1,0 +1,25 @@
+{
+  "name": "select-video-to-transform-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "postbuild": "cd dist && zip -r index.zip index.js*",
+    "deploy": "aws lambda update-function-code --function-name trigger-on-upload-to-s3 --zip-file fileb://dist/index.zip",
+    "test:s3-upload": "aws lambda invoke --function-name trigger-on-upload-to-s3 --cli-binary-format raw-in-base64-out --payload file://test/events/s3-uploaded.json /dev/stdout"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.261.0",
+    "@aws-sdk/s3-request-presigner": "^3.261.0",
+    "aws-lambda": "^1.0.7",
+    "dayjs": "^1.11.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.110",
+    "esbuild": "^0.17.5"
+  }
+}
